@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "NearestExchange P2P desk",
+  "version": "1.1.0",
+  "description": "Highlight BTC/ETH addresses and trace whether funds land at Binance or another VASP. For P2P fraud desks.",
+  "permissions": ["storage", "contextMenus", "activeTab"],
+  "host_permissions": ["https://*/*", "http://127.0.0.1/*", "http://localhost/*"],
+  "action": {
+    "default_title": "NearestExchange",
+    "default_popup": "popup.html"
+  },
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.binance.com/*",
+        "https://*.binance.us/*",
+        "https://etherscan.io/*",
+        "https://*.etherscan.io/*",
+        "https://blockstream.info/*",
+        "https://web.telegram.org/*",
+        "https://*.t.me/*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

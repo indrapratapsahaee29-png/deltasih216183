@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>NearestExchange</title>
+  <style>
+    :root { --bg:#0c0d0f; --fg:#ecece8; --muted:#9a9a94; --line:rgba(236,236,232,.12); --ok:#6e9a7c; --warn:#b89562; }
+    body { margin:0; width:360px; background:var(--bg); color:var(--fg); font:13px/1.45 system-ui,sans-serif; }
+    header { padding:12px 14px 8px; border-bottom:1px solid var(--line); }
+    header strong { font-size:13px; }
+    header span { display:block; color:var(--muted); font-size:11px; margin-top:2px; }
+    form, .out { padding:12px 14px; }
+    label { display:block; font-size:11px; color:var(--muted); margin:8px 0 4px; letter-spacing:.06em; text-transform:uppercase; }
+    input, select { width:100%; box-sizing:border-box; height:34px; background:#141518; color:var(--fg); border:1px solid var(--line); border-radius:8px; padding:0 8px; }
+    button { width:100%; height:36px; margin-top:10px; border:0; border-radius:8px; background:#c8ccd4; color:#0c0d0f; font-weight:600; cursor:pointer; }
+    .out { display:none; border-top:1px solid var(--line); }
+    .out.on { display:block; }
+    .title { font-weight:600; margin-bottom:6px; }
+    ol { margin:8px 0 0; padding-left:18px; color:var(--muted); }
+    .err { color:#c96b6b; }
+  </style>
+</head>
+<body>
+  <header>
+    <strong>P2P fraud desk</strong>
+    <span>Trace a wallet. Freeze if it lands at Binance.</span>
+  </header>
+  <form id="f">
+    <label>API base</label>
+    <input id="api" placeholder="https://your-desk.example" />
+    <label>Address</label>
+    <input id="address" required placeholder="0x… or bc1…" />
+    <label>Chain</label>
+    <select id="chain"><option value="eth">Ethereum</option><option value="btc">Bitcoin</option></select>
+    <label>P2P scenario</label>
+    <select id="scenario">
+      <option value="off_platform">Off-platform after P2P</option>
+      <option value="inbound_laundering">Inbound to Binance</option>
+      <option value="fake_merchant">Fake P2P merchant</option>
+      <option value="withdrawal_to_scam">Withdrawal to scam</option>
+      <option value="unknown">Unspecified</option>
+    </select>
+    <button type="submit">Trace</button>
+  </form>
+  <div class="out" id="out"></div>
+  <script src="popup.js"></script>
+</body>
+</html>
